@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from homepage.views import error_400_view_handler, error_403_view_handler, error_404_view_handler, error_500_view_handler
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,3 +24,8 @@ urlpatterns = [
     path("spaceUser/", include("spaceUser.urls")),
     path("products/", include("products.urls")),
 ]
+
+handler404 = 'homepage.views.error_404_view_handler'
+handler500 = 'homepage.views.error_500_view_handler'
+handler403 = 'homepage.views.error_403_view_handler'
+handler400 = 'homepage.views.error_400_view_handler'

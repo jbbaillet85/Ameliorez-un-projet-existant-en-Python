@@ -2,4 +2,5 @@
 [![Build Status](https://app.travis-ci.com/jbbaillet85/Ameliorez-un-projet-existant-en-Python.svg?branch=main)](https://app.travis-ci.com/jbbaillet85/Ameliorez-un-projet-existant-en-Python)
 
 # Ameliorez_un_projet_existant_en_Python
-Projet d'étude 
+
+[Tableau Trello de gestion agile](https://trello.com/b/Cl1dNvgv/am%C3%A9liorer-en-projet-existant-en-python)

@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .form import RegisterForm, LoginForm
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
+from .form import PasswordResetConfirmForm, RegisterForm, LoginForm
 from homepage.forms import SearchForm
 from spaceUser.models import User
 
@@ -61,3 +63,33 @@ def spaceUser(request):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+def password_reset(request):
+    password_reset = PasswordResetView()
+    if request.method == "POST":
+        form = password_reset.form_class
+        if form.is_valid():
+            form.save()
+            form.send_mail()
+            context={'form':form}
+            return render(request, 'password_reset_form.html', context)
+
+def password_reset_done(request):
+    template = PasswordResetCompleteView()
+    context = {'template':template.template_name}
+    return render(request, 'password_reset_done.html', context)
+
+def password_reset_confirm(request):
+    passwordResetConfirm = PasswordResetConfirmForm()
+    if request.method == "POST":
+        form = PasswordResetConfirmForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            context = {'template':passwordResetConfirm.template_name}
+            return render(request, 'password_reset_confirm.html', context)
+
+def password_reset_succes(request):
+    template = PasswordResetConfirmView()
+    context = {'template':template.template_name}
+    return render(request, 'password_reset_succes.html', context)

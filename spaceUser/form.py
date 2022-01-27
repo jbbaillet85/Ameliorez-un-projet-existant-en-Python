@@ -29,3 +29,18 @@ class LoginForm(ModelForm):
             attrs={'placeholder': 'mot de passe'}),
                    'email': EmailInput(attrs={'placeholder': 'email'}),
                    }
+
+class PasswordResetForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']
+        labels = {"email": ""}
+        widgets = {'email': EmailInput(attrs={'placeholder': 'email'}),}
+
+class PasswordResetConfirmForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['password']
+        labels = {"password": ""}
+        widgets = {'password': forms.PasswordInput(
+            attrs={'placeholder': 'mot de passe'}),}

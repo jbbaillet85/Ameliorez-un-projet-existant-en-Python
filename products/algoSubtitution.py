@@ -11,7 +11,7 @@ class AlgoSubtitution:
         search = SearchVector("product_name") + \
             SearchVector("ingredients_text") + \
             SearchVector("url") + SearchVector("pnns_groups_1")
-        result_search = Product.objects.annotate(search=search).filter(
+        result_search = Product.objects.annotate(search=search).get(
             search=self.keyword).order_by("nutriscore_grade")
         return result_search
 

@@ -18,6 +18,6 @@
 </form>
 <p>{{ form.errors }}</p>
 <p>{{ message }}</p>
-
+<p><a href="{% url 'password_reset' %}">Mot de passe oublié ?</a></p>
 <p>Si vous n'avez pas de compte <a href="{% url 'register' %}">s'enregistrer</a></p>
 {% endblock %}
