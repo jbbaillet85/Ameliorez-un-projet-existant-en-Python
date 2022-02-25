@@ -1,10 +1,9 @@
 from django.test import Client
 from django.urls import reverse, resolve
 
-from spaceUser.views import password_reset, password_reset_done, password_reset_confirm, password_reset_succes
 
 client = Client()
-list_name_url = ['password_reset', 'password_reset_done', 'password_reset_confirm', 'password_reset_succes']
+list_name_url = ['password_reset', 'password_reset_done', 'password_reset_complete']
 
 def test_spaceUser_reset_passord_url():
     """
