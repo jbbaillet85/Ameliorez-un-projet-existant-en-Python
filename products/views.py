@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from multiprocessing import context
+from django.shortcuts import render, get_object_or_404, redirect
 from homepage.forms import SearchForm
 from products.algoSubtitution import AlgoSubtitution, Substitution
 from products.algoSubtitution import ProductsOfFavorites
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
 from products.models import Product, Favorites
 
 # Create your views here.
@@ -67,5 +70,14 @@ def get_favorites(request):
     except: # noqa
         favorites = None
     form = SearchForm()
-    context = {'favorites': favorites.products, 'form_search': form}
+    print(f"favorite{favorites}")
+    # favorite = get_object_or_404(Favorites, product_id=product_id)
+    context = {'favorites': favorites.products, 'form_search': form, 'delete': 'favorite.delete()'}
     return render(request, "favorites.html", context)
+
+class AuthorDeleteView(DeleteView):
+    model = Favorites
+    success_url = reverse_lazy('favorites')
+    
+
+    

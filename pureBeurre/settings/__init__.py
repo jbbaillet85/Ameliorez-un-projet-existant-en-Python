@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'products',
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
@@ -68,7 +68,7 @@ ROOT_URLCONF = 'pureBeurre.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['pureBeurre/'],
+        'DIRS': [BASE_DIR +'/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

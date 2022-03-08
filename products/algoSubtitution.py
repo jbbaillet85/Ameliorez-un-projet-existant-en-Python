@@ -1,4 +1,5 @@
 from django.contrib.postgres.search import SearchVector
+from django.shortcuts import render, get_object_or_404, redirect
 from products.models import Product, Favorites
 
 
@@ -11,7 +12,7 @@ class AlgoSubtitution:
         search = SearchVector("product_name") + \
             SearchVector("ingredients_text") + \
             SearchVector("url") + SearchVector("pnns_groups_1")
-        result_search = Product.objects.annotate(search=search).get(
+        result_search = Product.objects.annotate(search=search).filter(
             search=self.keyword).order_by("nutriscore_grade")
         return result_search
 
