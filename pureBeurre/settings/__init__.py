@@ -1,6 +1,7 @@
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from dotenv import load_dotenv
+import django_heroku
 from pathlib import Path
 import os
 
@@ -9,11 +10,12 @@ load_dotenv()
 env_path = Path('.')/'.env'
 load_dotenv(dotenv_path=env_path)
 
+
 sentry_sdk.init(
-    dsn="https://75c307e1a11144e3b43e155c5dff1691@o639858.ingest.sentry.io/6081112", # noqa
+    dsn="https://7c0bdef18dd246e3b2f7b0700ceff85e@o639858.ingest.sentry.io/6248649",
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,
-    send_default_pii=True,
+    send_default_pii=True
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -59,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -188,3 +191,5 @@ LOGGING = {
         },
     },
 }
+
+django_heroku.settings(locals())
