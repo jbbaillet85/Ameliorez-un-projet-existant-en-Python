@@ -2,6 +2,7 @@
 from django.urls import reverse, resolve
 
 from spaceUser.views import register, identification, spaceUser, logout
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 
 class TestSpaceUserUrls:
@@ -40,3 +41,20 @@ class TestSpaceUserUrls:
         url = reverse('logout')
         assert resolve(url).view_name == 'logout'
         assert resolve(url).func, logout
+
+    def test_reset_passord_url(self):
+        """
+        Testing if the 'spaceUser' route maps to reset password
+        """
+
+        url = reverse('password_reset')
+        assert resolve(url).view_name == 'password_reset'
+        assert resolve(url).func, PasswordResetView
+
+        url = reverse('password_reset_done')
+        assert resolve(url).view_name == 'password_reset_done'
+        assert resolve(url).func, PasswordResetDoneView
+
+        url = reverse('password_reset_complete')
+        assert resolve(url).view_name == 'password_reset_complete'
+        assert resolve(url).func, PasswordResetCompleteView

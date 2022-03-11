@@ -3,7 +3,9 @@ from import_export.admin import ImportExportModelAdmin
 from products.models import Product, Category
 
 # Register your models here.
-
+admin.site.site_header = "Produit"
+admin.site.site_title = "purebeurre"
+admin.site.index_title = "administration"
 
 class ProductAdmin(ImportExportModelAdmin):
     resource_class = Product

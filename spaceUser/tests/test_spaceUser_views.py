@@ -43,3 +43,22 @@ class TestSpaceUserView:
 
         assert response.url == '/spaceUser/login'
         assert response.status_code == 302
+    
+    @pytest.mark.django_db
+    def reset_password_view(self):
+
+        response = self.client.get(reverse('password_reset'))
+        assert response.url == 'spaceUser/password_reset'
+        assert response.status_code == 200
+
+        response = self.client.get(reverse('password_reset_done'))
+        assert response.url == 'spaceUser/password_reset_done'
+        assert response.status_code == 200
+
+        response = self.client.get(reverse('password_reset_confirm'))
+        assert response.url == 'spaceUser/reset/<uidb64>/<token>'
+        assert response.status_code == 200
+
+        response = self.client.get(reverse('password_reset_complete'))
+        assert response.url == 'spaceUser/password_reset_complete'
+        assert response.status_code == 200
