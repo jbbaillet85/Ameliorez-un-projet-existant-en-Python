@@ -15,10 +15,10 @@ jobs:
     steps:
       - checkout
       - python/install-packages:
-          pkg-manager: pipenv
+          pkg-manager: pip install -r requirements.txt
       - run:
           name: Run tests
-          command: pipenv run python -m pytest # alternatively run `python -m pytest` if you are running vanilla pytest
+          command: pytest # alternatively run `python -m pytest` if you are running vanilla pytest
       - store_test_results:
           path: test-results
       - store_artifacts:
