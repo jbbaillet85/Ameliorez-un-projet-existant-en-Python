@@ -15,10 +15,10 @@ jobs:
     steps:
       - checkout
       - python/install-packages:
-          pkg-manager: pip install -r requirements.txt
+          pkg-manager: pip
       - run:
           name: Run tests
-          command: pytest # alternatively run `python -m pytest` if you are running vanilla pytest
+          command: python -m pytest # alternatively run `python -m pytest` if you are running vanilla pytest
       - store_test_results:
           path: test-results
       - store_artifacts:
