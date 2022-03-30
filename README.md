@@ -35,6 +35,7 @@ pipenv run python manage.py collectstatic
 pipenv run python manage.py insertCategory
 pipenv run python manage.py insertProduct
 pipenv run pytest
+pipenv run pip freeze > requirements.txt
 ```
 # site en production:
 https://purebeurre35.herokuapp.com
