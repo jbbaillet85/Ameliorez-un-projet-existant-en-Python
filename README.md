@@ -7,16 +7,34 @@
 
 [Tableau Trello de gestion agile](https://trello.com/b/Cl1dNvgv/am%C3%A9liorer-en-projet-existant-en-python)
 
+## Environnement de developpement
+
+### Pré-requis
+
+- Python 3.10
+- Django
+
+### Commandes
+#### Création de l'environnement virtuel
+```
+pip install --user pipenv
+mkdir .venv
+touch .env
+pipenv --python 3.10
+```
+#### Installation des dépendances
+```
+pipenv install
+```
+#### Commandes Procédure
+```
+pipenv run python manage.py runserver
+pipenv run python manage.py makemigrations
+pipenv run python manage.py migrate
+pipenv run python manage.py collectstatic
+pipenv run python manage.py insertCategory
+pipenv run python manage.py insertProduct
+pipenv run pytest
+```
 # site en production:
 https://purebeurre35.herokuapp.com
-
-# procédure:
-0. Installer un environnement virtuel
-1. INSTALLER psycopg2, gunicorn, django-heroku, dj_database_url
-2. CREER LE FICHIER Procfile sans extension
-3. Installer les products:
-```python
-python manage.py migrate
-python manage.py insertCategory
-python manage.py insertProduct
-```
