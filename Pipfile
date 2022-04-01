@@ -12,6 +12,7 @@ django-import-export = "*"
 pillow = "*"
 psycopg2 = "*"
 dj-database-url = "*"
+requests = "*"
 
 [dev-packages]
 flake8 = "*"
