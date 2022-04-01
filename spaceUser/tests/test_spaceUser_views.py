@@ -14,10 +14,16 @@ class TestSpaceUserView:
         then,the user is redirected to '/spaceUser/' route,
         For the second assert, we are checking the 302 status code(redirect)
         """
-        TestSpaceUserView.client.post('register', {
-            'username': 'username', 'last_name': 'last_name',
-            'email': 'email@email.com',
-            'password1': 'password', 'password2': 'password'})
+        TestSpaceUserView.client.post(
+            "register",
+            {
+                "username": "username",
+                "last_name": "last_name",
+                "email": "email@email.com",
+                "password1": "password",
+                "password2": "password",
+            },
+        )
 
     @pytest.mark.django_db
     def test_spaceUser_view(self):
@@ -25,9 +31,9 @@ class TestSpaceUserView:
         Testing spaceUser
         """
 
-        response = self.client.get(reverse('spaceUser'))
+        response = self.client.get(reverse("spaceUser"))
 
-        assert response.url == '/accounts/login/?next=/spaceUser/spaceUser'
+        assert response.url == "/accounts/login/?next=/spaceUser/spaceUser"
         assert response.status_code == 302
 
     @pytest.mark.django_db
@@ -39,26 +45,26 @@ class TestSpaceUserView:
         status code
         """
 
-        response = self.client.get(reverse('logout'))
+        response = self.client.get(reverse("logout"))
 
-        assert response.url == '/spaceUser/login'
+        assert response.url == "/spaceUser/login"
         assert response.status_code == 302
-    
+
     @pytest.mark.django_db
     def reset_password_view(self):
 
-        response = self.client.get(reverse('password_reset'))
-        assert response.url == 'spaceUser/password_reset'
+        response = self.client.get(reverse("password_reset"))
+        assert response.url == "spaceUser/password_reset"
         assert response.status_code == 200
 
-        response = self.client.get(reverse('password_reset_done'))
-        assert response.url == 'spaceUser/password_reset_done'
+        response = self.client.get(reverse("password_reset_done"))
+        assert response.url == "spaceUser/password_reset_done"
         assert response.status_code == 200
 
-        response = self.client.get(reverse('password_reset_confirm'))
-        assert response.url == 'spaceUser/reset/<uidb64>/<token>'
+        response = self.client.get(reverse("password_reset_confirm"))
+        assert response.url == "spaceUser/reset/<uidb64>/<token>"
         assert response.status_code == 200
 
-        response = self.client.get(reverse('password_reset_complete'))
-        assert response.url == 'spaceUser/password_reset_complete'
+        response = self.client.get(reverse("password_reset_complete"))
+        assert response.url == "spaceUser/password_reset_complete"
         assert response.status_code == 200

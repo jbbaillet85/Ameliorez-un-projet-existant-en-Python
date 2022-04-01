@@ -1,5 +1,4 @@
-from multiprocessing import context
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
 from homepage.forms import SearchForm
 from products.algoSubtitution import AlgoSubtitution, Substitution
 from products.algoSubtitution import ProductsOfFavorites
@@ -20,13 +19,15 @@ def get_results_products(request):
             products = AlgoSubtitution(search_product)
             form_search = SearchForm()
             print(f"products: {products}")
-            context = {'form_search': form_search,
-                       'products': products.result_search,
-                       "search_product": search_product}
+            context = {
+                "form_search": form_search,
+                "products": products.result_search,
+                "search_product": search_product,
+            }
             return render(request, "result_products.html", context)
     else:
         form = SearchForm()
-        context = {'form_search': form}
+        context = {"form_search": form}
         return render(request, "homepage.html", context)
 
 
@@ -36,23 +37,25 @@ def get_choice_substitution(request):
         product_id = request.POST.get("product_id")
         substituted = Product.objects.get(id=product_id)
         substitutions = Substitution(product_id)
-    context = {'substituted': substituted,
-               'substitutions': substitutions.list_products,
-               'form_search': form}
+    context = {
+        "substituted": substituted,
+        "substitutions": substitutions.list_products,
+        "form_search": form,
+    }
     return render(request, "choice_subtitution.html", context)
 
 
-@login_required(login_url='login')
+@login_required(login_url="login")
 def get_description_product(request):
     if request.method == "POST":
         product_id = request.POST.get("product_id")
         product = Product.objects.get(id=product_id)
         form = SearchForm()
-    context = {'product': product, 'form_search': form}
+    context = {"product": product, "form_search": form}
     return render(request, "description_product.html", context)
 
 
-@login_required(login_url='login')
+@login_required(login_url="login")
 def get_favorites(request):
     if request.method == "POST":
         product_id = request.POST.get("product_id")
@@ -60,24 +63,25 @@ def get_favorites(request):
         print(f"product_id: {product_id}")
         print(f"user: {request.user.id}")
         Favorites.objects.create(
-            product_id=product_id,
-            user_id=request.user.id)
-    except: # noqa
+            product_id=product_id, user_id=request.user.id)
+    except:  # noqa
         print("Le favori est déjàs enregistré")
     user = request.user.id
     try:
         favorites = ProductsOfFavorites(user)
-    except: # noqa
+    except:  # noqa
         favorites = None
     form = SearchForm()
     print(f"favorite{favorites}")
     # favorite = get_object_or_404(Favorites, product_id=product_id)
-    context = {'favorites': favorites.products, 'form_search': form, 'delete': 'favorite.delete()'}
+    context = {
+        "favorites": favorites.products,
+        "form_search": form,
+        "delete": "favorite.delete()",
+    }
     return render(request, "favorites.html", context)
+
 
 class AuthorDeleteView(DeleteView):
     model = Favorites
-    success_url = reverse_lazy('favorites')
-    
-
-    
+    success_url = reverse_lazy("favorites")

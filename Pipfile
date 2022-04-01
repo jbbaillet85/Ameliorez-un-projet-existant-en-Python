@@ -11,6 +11,7 @@ django-heroku = "*"
 django-import-export = "*"
 pillow = "*"
 psycopg2 = "*"
+dj-database-url = "*"
 
 [dev-packages]
 flake8 = "*"

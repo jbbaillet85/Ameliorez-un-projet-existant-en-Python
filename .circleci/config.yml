@@ -21,6 +21,7 @@ jobs:
           command: |
             pip install -r requirements.txt
             python manage.py collectstatic
+            echo 'yes'
             python -m pytest
       - store_test_results:
           path: test-results
@@ -31,14 +32,14 @@ jobs:
           root: ~/project
           paths:
             - .
- 
+
   deploy: # this can be any name you choose
     docker:
       - image: cimg/python:3.10.1
     steps:
       - attach_workspace:
           at: ~/project
-      - heroku/deploy-via-git: 
+      - heroku/deploy-via-git:
           force: true # force push when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
 
 workflows:
@@ -57,7 +58,7 @@ workflows:
   nightly:
     triggers:
       - schedule:
-          cron: "0 0 * * *"       
+          cron: "0 0 * * *"
           filters:
             branches:
               only:

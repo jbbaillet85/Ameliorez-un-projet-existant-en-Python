@@ -7,10 +7,15 @@ admin.site.site_header = "Produit"
 admin.site.site_title = "purebeurre"
 admin.site.index_title = "administration"
 
+
 class ProductAdmin(ImportExportModelAdmin):
     resource_class = Product
-    list_display = ("product_name", "nutriscore_grade",
-                    "pnns_groups_1", "ingredients_text")
+    list_display = (
+        "product_name",
+        "nutriscore_grade",
+        "pnns_groups_1",
+        "ingredients_text",
+    )
     search_fields = ("product_name", "ingredients_text")
     list_filter = ("nutriscore_grade", "pnns_groups_1")
     autocomplete_fields = ("pnns_groups_1",)

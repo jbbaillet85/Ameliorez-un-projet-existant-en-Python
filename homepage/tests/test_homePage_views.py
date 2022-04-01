@@ -14,13 +14,13 @@ class TestHomepageViews(TestCase):
         and in second assert,
         we are making sure it returns the correct template 'homepage.html'
         """
-        response = self.client.get(reverse('homepage'))
+        response = self.client.get(reverse("homepage"))
         assert response.status_code == 200
-        assertTemplateUsed(response, 'homepage.html')
+        assertTemplateUsed(response, "homepage.html")
 
     @pytest.mark.django_db
     def test_HomePage_result_products_View(self):
-        response = self.client.get(reverse('result_products'))
+        response = self.client.get(reverse("result_products"))
         assert response.status_code == 200
 
     @pytest.mark.django_db
@@ -31,6 +31,6 @@ class TestHomepageViews(TestCase):
         we are making sure it returns the correct template
         'mentions_legales.html'
         """
-        response = self.client.get(reverse('mentions_legales'))
+        response = self.client.get(reverse("mentions_legales"))
         assert response.status_code == 200
-        assertTemplateUsed(response, 'mentions_legales.html')
+        assertTemplateUsed(response, "mentions_legales.html")

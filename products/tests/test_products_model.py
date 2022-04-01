@@ -14,13 +14,13 @@ class TestProductsModel:
         """
         category_vegetale = Category.objects.create(pnns_groups_1="vegetale")
         product = Product.objects.create(
-            product_name='Crème de noisette',
-            nutriscore_grade='c',
-            image_url='https://images.openfoodfacts.org/images/products/361/304/271/7385/front_fr.3.400.jpg', # noqa
+            product_name="Crème de noisette",
+            nutriscore_grade="c",
+            image_url="https://images.openfoodfacts.org/images/products/361/304/271/7385/front_fr.3.400.jpg",  # noqa
             pnns_groups_1=category_vegetale,
             ingredients_text="""Poudre de NOISETTE, eau, sucre de canne,
             sirop de glucose-fructose, gélifiant : pectine de fruits.""",
-            url="https://fr.openfoodfacts.org/produit/3613042717385/creme-de-noisette-phil-gourmet") # noqa
+            url="https://fr.openfoodfacts.org/produit/3613042717385/creme-de-noisette-phil-gourmet",)  # noqa
         assert str(product) == f"{product.url}"
 
     @pytest.mark.django_db
@@ -45,12 +45,12 @@ class TestProductsModel:
         user = User.objects.create(username="user", email="user@user.com")
         category_vegetale = Category.objects.create(pnns_groups_1="vegetale")
         product = Product.objects.create(
-            product_name='Crème de noisette',
-            nutriscore_grade='c',
-            image_url='https://images.openfoodfacts.org/images/products/361/304/271/7385/front_fr.3.400.jpg', # noqa
+            product_name="Crème de noisette",
+            nutriscore_grade="c",
+            image_url="https://images.openfoodfacts.org/images/products/361/304/271/7385/front_fr.3.400.jpg",  # noqa
             pnns_groups_1=category_vegetale,
             ingredients_text="""Poudre de NOISETTE, eau, sucre de canne,
             sirop de glucose-fructose, gélifiant : pectine de fruits.""",
-            url="https://fr.openfoodfacts.org/produit/3613042717385/creme-de-noisette-phil-gourmet") # noqa
+            url="https://fr.openfoodfacts.org/produit/3613042717385/creme-de-noisette-phil-gourmet",)  # noqa
         favorite = Favorites.objects.create(user=user, product=product)
         assert str(favorite) == f"{favorite.user} -> {favorite.product}"

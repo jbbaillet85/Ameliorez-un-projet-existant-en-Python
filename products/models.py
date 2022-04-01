@@ -10,13 +10,11 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    product_name = models.CharField(
-        max_length=150, default="pas de nom de produit")
+    product_name = models.CharField(max_length=150, default="pas de nom de produit") # noqa
     nutriscore_grade = models.CharField(max_length=1, default="0")
     image_url = models.ImageField(default="")
-    pnns_groups_1 = models.ForeignKey(
-        Category, on_delete=models.CASCADE, default="")
-    ingredients_text = models.TextField(default="pas d'ingrédients renseignés")
+    pnns_groups_1 = models.ForeignKey(Category, on_delete=models.CASCADE, default="") # noqa
+    ingredients_text = models.TextField(default="pas d'ingrédients renseignés") # noqa
     url = models.URLField(unique=True)
 
     def __str__(self) -> str:
@@ -28,7 +26,7 @@ class Favorites(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = [['user_id', 'product_id']]
+        unique_together = [["user_id", "product_id"]]
 
     def __str__(self) -> str:
         return f"{self.user} -> {self.product}"

@@ -38,4 +38,9 @@ pipenv run pytest
 pipenv run pip freeze > requirements.txt
 ```
 # site en production:
+```
+pipenv install django-heroku pyscopg2 dj_database_url
+touch Procfile
+
+```
 https://purebeurre35.herokuapp.com
