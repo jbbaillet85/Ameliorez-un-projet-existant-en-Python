@@ -38,9 +38,18 @@ pipenv run pytest
 pipenv run pip freeze > requirements.txt
 ```
 # site en production:
+télécharger et installer
+https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
+
 ```
 pipenv install django-heroku pyscopg2 dj_database_url
 touch Procfile
+heroku login
+git init
+git add .
+git commit -m "My first commit"
+heroku git:remote -a purebeurre35
+git push heroku main
 
 ```
 https://purebeurre35.herokuapp.com

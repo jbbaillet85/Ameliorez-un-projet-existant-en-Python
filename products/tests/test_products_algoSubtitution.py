@@ -18,9 +18,7 @@ class TestAlgoSustitution:
         product = Product.objects.create(id=1, pnns_groups_1=category_vegetale)
         algo = Substitution(product.id)
         assert (
-            str(algo) == f"""category: {algo.category}
-            - products: {algo.list_products}"""
-        )  # noqa
+            str(algo) == f"category: {algo.category} - products: {algo.list_products}")  # noqa
 
     @pytest.mark.django_db
     def test_ProductsOfFavorites(self):
@@ -31,7 +29,4 @@ class TestAlgoSustitution:
         )
         client.force_login(user)
         algo = ProductsOfFavorites(user.id)
-        assert (
-            str(algo) == f"""favorite: user: {algo.id_user}
-            - products: {algo.products}"""
-        )  # noqa
+        assert (str(algo) == f"favorite: user: {algo.id_user} - products: {algo.products}") # noqa
