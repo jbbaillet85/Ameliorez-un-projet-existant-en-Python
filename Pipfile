@@ -13,6 +13,7 @@ pillow = "*"
 psycopg2 = "*"
 dj-database-url = "*"
 requests = "*"
+gunicorn = "*"
 
 [dev-packages]
 flake8 = "*"
