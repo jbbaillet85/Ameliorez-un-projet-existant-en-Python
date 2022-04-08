@@ -42,7 +42,7 @@ télécharger et installer
 https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
 
 ```
-pipenv install django-heroku pyscopg2 dj_database_url
+pipenv install django-heroku pyscopg2 dj_database_url gunicorn
 touch Procfile
 heroku login
 git init
