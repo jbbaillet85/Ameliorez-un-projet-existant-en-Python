@@ -81,7 +81,3 @@ def get_favorites(request):
     }
     return render(request, "favorites.html", context)
 
-
-class AuthorDeleteView(DeleteView):
-    model = Favorites
-    success_url = reverse_lazy("favorites")
