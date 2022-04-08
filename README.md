@@ -48,8 +48,11 @@ heroku login
 git init
 git add .
 git commit -m "My first commit"
-heroku git:remote -a purebeurre35
+heroku create purebeurre35
 git push heroku main
+heroku run python manage.py insertCategory
+heroku run python manage.py insertProduct
+heroku logs
 
 ```
 https://purebeurre35.herokuapp.com
