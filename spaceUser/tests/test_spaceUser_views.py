@@ -52,6 +52,8 @@ class TestSpaceUserView:
 
     @pytest.mark.django_db
     def reset_password_view(self):
+        """testing views of reset password
+        """
 
         response = self.client.get(reverse("password_reset"))
         assert response.url == "spaceUser/password_reset"
